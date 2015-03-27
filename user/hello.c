@@ -2,12 +2,17 @@
 #include "osapi.h"
 #include "os_type.h"
 #include "user_config.h"
+#include "arduinostyle.h"
 
 //Main Timer
 static volatile os_timer_t main_timer;
 
 void loop(void *arg) {
-	os_prinf(".");
+	char c;
+	while (Serial.available() > 0) {
+		c = (char) Serial.read();
+		Serial.write(c);
+	}
 }
 
 void start(void) {
@@ -32,7 +37,7 @@ void start(void) {
  */
 void user_init() {
 	// This is used to setup the serial communication
-	uart_div_modify(0, UART_CLK_FREQ / 115200);
+	Serial.begin(115200);
 
 	// once the initialization is done we can start with our code
 	system_init_done_cb(start);

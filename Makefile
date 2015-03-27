@@ -25,8 +25,8 @@ ESPPORT		?= /dev/ttyUSB0
 TARGET		= app
 
 # which modules (subdirectories) of the project to include in compiling
-MODULES			= user
-EXTRA_INCDIR    = include /opt/Espressif/sdk/
+MODULES			= user driver driver/arduino
+EXTRA_INCDIR    = include include/driver include/driver/arduino /opt/Espressif/sdk/
 
 # libraries used in this project, mainly provided by the SDK
 LIBS		= c gcc hal pp phy net80211 lwip wpa main
